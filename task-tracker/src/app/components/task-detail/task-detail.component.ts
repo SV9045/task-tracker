@@ -9,7 +9,7 @@ import { Task } from 'src/app/model/task.model';
 })
 export class TaskDetailComponent implements OnInit {
 
-  @Input() task: Task | undefined ;
+  @Input() task!: Task | null ;
   faTrash = faTrash;
   // faEdit= faEdit;
 
