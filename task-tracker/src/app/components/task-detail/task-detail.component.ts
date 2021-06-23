@@ -5,11 +5,12 @@ import { Task } from 'src/app/model/task.model';
 @Component({
   selector: 'app-task-detail',
   templateUrl: './task-detail.component.html',
-  styleUrls: ['./task-detail.component.css'],
+  styleUrls: ['./task-detail.component.css']
 })
 export class TaskDetailComponent implements OnInit {
   @Input() task!: Task;
   @Output() deleteTask: EventEmitter<Task> = new EventEmitter();
+  @Output() toggleReminder: EventEmitter<Task> = new EventEmitter();
   faTrash = faTrash;
   // faEdit= faEdit;
 
@@ -19,5 +20,9 @@ export class TaskDetailComponent implements OnInit {
 
   onDeleteTask(task: Task) {
     this.deleteTask.emit(task);
+  }
+
+  toggle(task: Task) {
+    this.toggleReminder.emit(task);
   }
 }

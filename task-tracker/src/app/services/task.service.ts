@@ -1,6 +1,7 @@
 import {
   HttpClient,
   HttpErrorResponse,
+  HttpHeaders,
   HttpStatusCode
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -8,8 +9,13 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Task } from 'src/app/model/task.model';
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+}
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class TaskService {
   private apiURL = 'http://localhost:5000/tasks';
@@ -21,6 +27,15 @@ export class TaskService {
       tap((data) => console.log(JSON.stringify(data))),
       catchError(this.handleError)
     );
+  }
+
+  addTask(task: Task): Observable<Task> {
+    return this.http.post<Task>(this.apiURL, task, httpOptions);
+  }
+
+  updateReminder(task: Task): Observable<Task> {
+    const url = `${this.apiURL}/${task.id}`;
+    return this.http.put<Task>(url, task, httpOptions);
   }
 
   deleteTask(task: Task): Observable<Task> {

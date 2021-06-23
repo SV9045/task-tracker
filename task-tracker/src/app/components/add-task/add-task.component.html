@@ -1,0 +1,44 @@
+<form [formGroup]="addTaskForm"
+      (ngSubmit)="saveTask()">
+  <div class="form-control">
+    <label for="task">Task</label>
+    <input type="text"
+           name="task-name"
+           id="task-name"
+           formControlName="text"
+           placeholder="Task Name" />
+    <div *ngIf="isSubmitted && addTaskForm.get('taskName')?.errors?.required">
+      <small>
+        Task Name is Required
+      </small>
+    </div>
+  </div>
+  <div class="form-control">
+    <label for="date-time">Date & Time</label>
+    <input type="datetime-local"
+           name="date-time"
+           id="date-time"
+           formControlName="day"
+           placeholder="Date and Time" />
+    <div *ngIf="isSubmitted && addTaskForm.get('taskName')?.errors?.required">
+    <small>
+      Please, Choose Date and Time
+    </small>
+  </div>
+  </div>
+  <div class="form-control">
+    <div class="form-control-check">
+      <input type="checkbox"
+             name="set-reminder"
+             id="reminder"
+             formControlName="reminder" />
+      <label for="reminder">Set Reminder</label>
+    </div>
+  </div>
+  <div *ngIf="isSubmitted && addTaskForm.get('taskName')?.errors?.required">
+    <small>
+      Set Reminder is Required
+    </small>
+  </div>
+  <input type="submit" value="Save Task" class="btn btn-block">
+</form>

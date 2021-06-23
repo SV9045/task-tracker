@@ -27,5 +27,11 @@ body {
   letter-spacing: 0.5px;
   text-transform: uppercase;
   color: #f1f1f5;
+  background-color: #17ad44;
   font-weight: 500;
+}
+
+.btn-block {
+  width: 100%;
+  margin: 1rem 0;
 }
