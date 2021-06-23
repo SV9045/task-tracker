@@ -12,18 +12,23 @@ import { Task } from 'src/app/model/task.model';
   providedIn: 'root',
 })
 export class TaskService {
-  tasks$!: Observable<Task[]> | null;
   private apiURL = 'http://localhost:5000/tasks';
 
   constructor(private http: HttpClient) {}
 
-  getTasks(): Observable<Task[]> | null {
-    return (this.tasks$ = this.http.get<Task[]>(this.apiURL).pipe(
+  getTasks(): Observable<Task[]> {
+    return this.http.get<Task[]>(this.apiURL).pipe(
       tap((data) => console.log(JSON.stringify(data))),
       catchError(this.handleError)
-    ));
+    );
   }
 
+  deleteTask(task: Task): Observable<Task> {
+    const url = `${this.apiURL}/${task.id}`;
+    return this.http.delete<Task>(url);
+  }
+
+  // Error Handler
   private handleError(err: HttpErrorResponse): Observable<never> {
     // in a real world app, we may send the server to some remote logging infrastructure
     // instead of just logging it to the console
