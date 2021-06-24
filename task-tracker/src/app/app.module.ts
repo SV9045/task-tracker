@@ -12,6 +12,8 @@ import { TaskDetailComponent } from './components/task-detail/task-detail.compon
 import { TaskListComponent } from './components/task-list/task-list.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { AboutComponent } from './components/about/about.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { AboutComponent } from './components/about/about.component';
     TaskDetailComponent,
     AddTaskComponent,
     WelcomeComponent,
-    AboutComponent
+    AboutComponent,
+    NotFoundComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
