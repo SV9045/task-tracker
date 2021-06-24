@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { UiService } from 'src/app/services/ui.service';
 
@@ -9,7 +9,7 @@ import { UiService } from 'src/app/services/ui.service';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
-  @Input() title!: string;
+  title: string = 'Task-Tracker';
 
   showAddTask!: boolean;
   subscription!: Subscription;

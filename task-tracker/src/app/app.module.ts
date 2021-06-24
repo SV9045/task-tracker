@@ -10,6 +10,8 @@ import { AddTaskComponent } from './components/add-task/add-task.component';
 import { ButtonComponent } from './components/button/button.component';
 import { TaskDetailComponent } from './components/task-detail/task-detail.component';
 import { TaskListComponent } from './components/task-list/task-list.component';
+import { WelcomeComponent } from './components/welcome/welcome.component';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { TaskListComponent } from './components/task-list/task-list.component';
     ButtonComponent,
     TaskListComponent,
     TaskDetailComponent,
-    AddTaskComponent
+    AddTaskComponent,
+    WelcomeComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,9 @@
 
 body {
   font-family: "Work Sans", sans-serif;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
 }
 
 .container {
@@ -29,6 +32,7 @@ body {
   color: #f1f1f5;
   background-color: #17ad44;
   font-weight: 500;
+  font-size: 1rem;
 }
 
 .btn-block {
@@ -37,5 +41,22 @@ body {
 }
 
 .error {
-  color: tomato
+  color: tomato;
+}
+
+a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #221f1f;
+  font-size: 1.2rem;
+}
+
+.h1 {
+  margin: 1rem;
+}
+
+.footer {
+  margin-top: auto;
+  background-color: #f1f1f5;
+  padding: 1rem 2rem;
 }
