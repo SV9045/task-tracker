@@ -2,5 +2,7 @@
   <h1>
     {{ title | uppercase }}
   </h1>
-  <app-button text="Add" (btnClick)="toggleAddTask()"></app-button>
+  <app-button text="{{showAddTask ? 'Close' : 'Add'}}"
+              color="{{showAddTask ? 'green' : 'Tomato'}}"
+              (btnClick)="toggleAddTask()"></app-button>
 </header>

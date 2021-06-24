@@ -21,7 +21,7 @@
     {
       "text": "test",
       "day": "2021-06-19T16:27",
-      "reminder": true,
+      "reminder": false,
       "id": 4
     }
   ]

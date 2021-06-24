@@ -14,10 +14,12 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonComponent implements OnInit {
+
   @Input() text: string = 'Click';
-  @Input() color: string = 'Tomato';
+  @Input() color: string = 'green';
 
   @Output() btnClick = new EventEmitter();
+
   constructor() {}
 
   ngOnInit(): void {}

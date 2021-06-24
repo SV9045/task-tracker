@@ -1,22 +1,30 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { Task } from 'src/app/model/task.model';
+import { UiService } from 'src/app/services/ui.service';
 
 @Component({
   selector: 'app-add-task',
   templateUrl: './add-task.component.html',
   styleUrls: ['./add-task.component.css']
 })
-export class AddTaskComponent implements OnInit {
+export class AddTaskComponent implements OnInit, OnDestroy {
 
   @Output() addTask: EventEmitter<Task> = new EventEmitter();
+
   addTaskForm!: FormGroup;
   isSubmitted!: boolean;
+  showForm!: boolean;
+  subscription = new Subscription();
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private uiService: UiService) {}
 
   ngOnInit(): void {
     this.createForm();
+    this.subscription = this.uiService.subject.subscribe(
+      (value) => (this.showForm = value)
+    );
   }
 
   createForm() {
@@ -29,8 +37,6 @@ export class AddTaskComponent implements OnInit {
 
   saveTask() {
     this.isSubmitted = true;
-    console.log(this.addTaskForm.controls)
-    console.log(this.addTaskForm.value)
     if (!this.addTaskForm.valid) {
       return;
     }
@@ -38,4 +44,10 @@ export class AddTaskComponent implements OnInit {
     this.addTaskForm.reset();
   }
 
+
+  ngOnDestroy(): void {
+    if(this.subscription) {
+      this.subscription.unsubscribe()
+    }
+  }
 }

@@ -1,17 +1,34 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { UiService } from 'src/app/services/ui.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'],
+  styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
   @Input() title!: string;
 
-  constructor() {}
+  showAddTask!: boolean;
+  subscription!: Subscription;
 
-  ngOnInit(): void {}
+  constructor(private uiService: UiService) {}
 
-  toggleAddTask() {}
+  ngOnInit(): void {
+    this.subscription = this.uiService
+      .subject
+      .subscribe((value) => (this.showAddTask = value));
+  }
+
+  toggleAddTask() {
+    this.uiService.toggleAddTask();
+  }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
 }

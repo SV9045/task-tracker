@@ -1,4 +1,5 @@
-<form [formGroup]="addTaskForm"
+<form *ngIf="showForm"
+      [formGroup]="addTaskForm"
       (ngSubmit)="saveTask()">
   <div class="form-control">
     <label for="task">Task</label>
@@ -7,8 +8,8 @@
            id="task-name"
            formControlName="text"
            placeholder="Task Name" />
-    <div *ngIf="isSubmitted && addTaskForm.get('taskName')?.errors?.required">
-      <small>
+    <div *ngIf="isSubmitted && addTaskForm.get('text')?.errors?.required">
+      <small class="error">
         Task Name is Required
       </small>
     </div>
@@ -20,8 +21,8 @@
            id="date-time"
            formControlName="day"
            placeholder="Date and Time" />
-    <div *ngIf="isSubmitted && addTaskForm.get('taskName')?.errors?.required">
-    <small>
+    <div *ngIf="isSubmitted && addTaskForm.get('day')?.errors?.required">
+    <small class="error">
       Please, Choose Date and Time
     </small>
   </div>
@@ -35,8 +36,8 @@
       <label for="reminder">Set Reminder</label>
     </div>
   </div>
-  <div *ngIf="isSubmitted && addTaskForm.get('taskName')?.errors?.required">
-    <small>
+  <div *ngIf="isSubmitted && addTaskForm.get('reminder')?.errors?.required">
+    <small class="error">
       Set Reminder is Required
     </small>
   </div>
